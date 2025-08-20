@@ -16,7 +16,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class Snippets {
 
     void browser_command_examples() {
-        open("https://google.com"); // открыть сайт Google
+        open("https://google.com"); // открыть отдельное окно сайта Google
         open("/customer/orders");   // открыть относительный URL (baseUrl задаётся параметром)
         open("/", AuthenticationType.BASIC,
                 new BasicAuthCredentials("", "user", "password")); // открыть с базовой аутентификацией
