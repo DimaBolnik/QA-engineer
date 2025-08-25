@@ -1,12 +1,10 @@
 package demoqa;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -24,15 +22,18 @@ public class TextBoxTest {
     @Test
     public void testTextBox() {
         open("/text-box");
+        String userName = "Dima";
+        String mail = "DimaBolnik@gmail.com";
 
         $("h1.text-center").shouldHave(text("Text Box"));
 
-        $("#userName").setValue("Dima");
-        $("#userEmail").setValue("DimaBolnik@gmail.com");
+        $("#userName").setValue(userName);
+        $("#userEmail").setValue(mail);
         $("#currentAddress").setValue("Russia, Penza");
         $("#permanentAddress").setValue("Russia, Penza");
         $("#submit.btn-primary").click();
-        $("#output").shouldBe(visible);
+        $("#output").$("#name").shouldHave(text(userName));
+        $("#output #email").shouldHave(text(mail));
 
     }
 }
