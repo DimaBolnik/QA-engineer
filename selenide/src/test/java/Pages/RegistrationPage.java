@@ -2,6 +2,11 @@ package Pages;
 
 import com.codeborne.selenide.SelenideElement;
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.TextStyle;
+import java.util.Locale;
+
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -54,11 +59,15 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setDateOfBirth(String month, String year, String day) {
+    public RegistrationPage setDateOfBirth(LocalDate date) {
         dateOfBirthInput.click();
-        monthSelect.selectOption(month);
-        yearSelect.selectOption(year);
-        $(".react-datepicker__day--0" + day + ":not(.react-datepicker__day--outside-month)").click();
+        String monthName = date.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+        // July, December, etc.
+
+        monthSelect.selectOption(monthName);
+        yearSelect.selectOption(String.valueOf(date.getYear()));
+        $(".react-datepicker__day--0" + String.format("%02d", date.getDayOfMonth()) +
+          ":not(.react-datepicker__day--outside-month)").click();
         return this;
     }
 

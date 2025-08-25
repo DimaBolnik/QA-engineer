@@ -4,6 +4,8 @@ import Pages.RegistrationPage;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.*;
 
+import java.time.LocalDate;
+
 import static com.codeborne.selenide.Selenide.sleep;
 
 public class DemoQaFormPageObjectTest {
@@ -16,15 +18,6 @@ public class DemoQaFormPageObjectTest {
 //        Configuration.holdBrowserOpen = true;
     }
 
-    @BeforeEach
-    public void beforeEach() {
-        System.out.println("beforeEach");
-    }
-
-    @AfterEach
-    public void afterEach() {
-        System.out.println("afterEach");
-    }
 
     @Test
     void fillPracticeForm() {
@@ -34,9 +27,7 @@ public class DemoQaFormPageObjectTest {
         String lastName = "Ivanov";
         String email = "ivanov@gmail.com";
         String phone = "1234567890";
-        String month = "July";
-        String year = "1990";
-        String day = "10";
+        LocalDate date = LocalDate.of(1990, 6, 10);
         String subject = "Maths";
         String picture = "test-image.png";
         String address = "Moscow, Russia";
@@ -48,7 +39,7 @@ public class DemoQaFormPageObjectTest {
                 .setEmail(email)
                 .selectGender("Male")
                 .setUserNumber(phone)
-                .setDateOfBirth(month, year, day)
+                .setDateOfBirth(date)
                 .setSubject(subject)
                 .selectHobby()
                 .uploadPicture(picture)
